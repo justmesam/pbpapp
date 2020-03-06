@@ -2,15 +2,11 @@ const mongoose = require('mongoose');
 
 let UserSchema = new mongoose.Schema(
     {
-        username: String,
-        email: String,
-        password: String,
-        isVendor: { type :Boolean, default: false }
+        username: { type: String, required: true },
+        email: { type: String, required: true, unique: true },
+        password: { type: String, required: true },
+        isVendor: { type :Boolean, required: true, default: false }
     }
 );
-
-UserSchema.methods.save = function(cb) {
-  return this.model('User').save()
-}
 
 module.exports = mongoose.model('User', UserSchema);

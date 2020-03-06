@@ -3,21 +3,26 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 
+const backend = require('./backend/index');
+
 dotenv.config();
 
-// env variables
 const databaseUrl = process.env.DATABASE_URL;
-const port = process.env.PORT
+const port = process.env.PORT;
 
-// app intance
-const app = express()
-const router = express.Router()
+const app = express();
+const router = express.Router();
 
-// instatiate DB
-mongoose.connect(databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(databaseUrl,
+  { useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+  })
 .then(() => console.log('Now connected to MongoDB!'))
 .catch(err => console.error('Something went wrong', err));
 
-// app methods
+backend(router);
+
 app.use(bodyParser.json())
+app.use('/api', router);
 app.listen(port, () => console.log(`shoppu is running on port :: ${port}`))
