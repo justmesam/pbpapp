@@ -43,5 +43,28 @@ module.exports = {
         order: responseObject
       })
   },
+  FetchOrders : async (req, res) => {
+    let limit = parseInt(req.params.limit, 10)
+    const userId = res.locals.userId
 
+    const numberOfOrders = await Order.countDocuments({ customer: userId })
+
+    if (limit && limit < numberOfOrders) {
+      const limitedOrders = await Order
+      .find({ customer: userId  })
+      .sort({ _id: -1 })
+      .limit(limit)
+
+      return res.send({
+        count: limit,
+        item: limitedOrders
+      })
+    }
+    const allOrders = await Order.find({ customer: userId })
+
+    return res.send({
+      count: numberOfOrders,
+      item: allOrders
+      })
+    }
 };
