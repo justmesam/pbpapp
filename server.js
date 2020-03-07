@@ -21,6 +21,11 @@ mongoose.connect(databaseUrl,
 .then(() => console.log('Now connected to MongoDB!'))
 .catch(err => console.error('Something went wrong', err));
 
+// Apps documentation
+app.get("/", (req, res) => {
+    res.redirect(documentationUrl);
+});
+
 backend(router);
 
 app.use(bodyParser.json())
