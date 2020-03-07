@@ -4,6 +4,7 @@ let ItemSchema = new mongoose.Schema(
     {
         name: { type: String, required: true },
         price: { type: Number, required: true },
+        dateCreated: { type: Date, default: Date.now },
         shop: {
           type: mongoose.Schema.Types.ObjectId,
           ref: 'Shop',

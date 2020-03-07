@@ -6,6 +6,7 @@ let UserSchema = new mongoose.Schema(
         email: { type: String, required: true, unique: true },
         password: { type: String, required: true },
         isVendor: { type :Boolean, required: false },
+        dateJoined: { type: Date, default: Date.now },
         shop: {
           type: mongoose.Schema.Types.ObjectId,
           ref: 'Shop',

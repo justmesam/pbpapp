@@ -6,4 +6,8 @@ module.exports = (router) => {
     router
         .route('/item/create')
         .post(authMiddleware.verifyToken, itemController.CreateItem);
+
+    router
+        .route('/item/fetch/:shop/:limit?')
+        .get(authMiddleware.verifyToken, itemController.FetchItems);
 };

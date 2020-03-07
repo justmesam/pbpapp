@@ -24,7 +24,8 @@ module.exports = {
         name: item.name,
         price: item.price,
         shop: item.shop,
-        id: item._id
+        id: item._id,
+        dateCtreated: item.dateCtreated
       }
 
       res.send({
@@ -32,5 +33,31 @@ module.exports = {
         item: responseObject
       })
   },
+  FetchItems : async (req, res) => {
+    let shop = req.params.shop
+    let limit = parseInt(req.params.limit, 10)
 
+    if(shop) {
+      const numberOfItems = await Item.countDocuments({ shop: shop })
+
+      if (limit && limit < numberOfItems) {
+        const limitedItems = await Item
+        .find({ shop: shop })
+        .sort({ _id: -1 })
+        .limit(limit)
+
+        return res.send({
+          count: limit,
+          item: limitedItems
+        })
+      }
+      const allItems = await Item.find({ shop: shop })
+
+      return res.send({
+        count: numberOfItems,
+        item: allItems
+      })
+    }
+    res.status(400).send({ message: `Provide shop id to get items`})
+  }
 };

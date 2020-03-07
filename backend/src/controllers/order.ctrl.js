@@ -35,6 +35,7 @@ module.exports = {
         shop: order.shop,
         id: order._id,
         customer: order.customer,
+        dateCtreated: order.dateCtreated
       }
 
       res.send({

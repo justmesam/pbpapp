@@ -66,7 +66,8 @@ module.exports = {
         username: user.username,
         id: user._id,
         isVendor: user.isVendor,
-        userKey: token
+        userKey: token,
+        dateJoined: user.dateJoined
       }
 
       res.send({
@@ -92,6 +93,7 @@ module.exports = {
           username: user.username,
           id: user._id,
           isVendor: user.isVendor,
+          dateJoined: user.dateJoined,
           userKey: token
         }
 
@@ -140,12 +142,14 @@ module.exports = {
         username: user.username,
         id: user._id,
         isVendor: user.isVendor,
+        dateJoined: user.dateJoined,
         shop: {
           id: shop._id,
           name: shop.name,
           longitude: shop.longitude,
           latitude: shop.latitude,
-          vendor: shop.vendor
+          vendor: shop.vendor,
+          dateCtreated: shop.dateCtreated
         }
       }
 

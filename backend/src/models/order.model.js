@@ -4,6 +4,7 @@ let OrderSchema = new mongoose.Schema(
     {
         name: { type: String, required: true },
         total: { type: Number, required: false },
+        dateCreated: { type: Date, default: Date.now },
         customer: {
           type: mongoose.Schema.Types.ObjectId,
           ref: 'User',
