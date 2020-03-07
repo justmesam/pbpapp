@@ -135,17 +135,23 @@ module.exports = {
 
       await user.save()
 
-      const userObject = {
+      const responseObject = {
         email: user.email,
         username: user.username,
         id: user._id,
         isVendor: user.isVendor,
-        shop: shop
+        shop: {
+          id: shop._id,
+          name: shop.name,
+          longitude: shop.longitude,
+          latitude: shop.latitude,
+          vendor: shop.vendor
+        }
       }
 
       return res.send({
         message: `Update successful`,
-        userObject
+        responseObject
       })
 
     }
