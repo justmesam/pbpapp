@@ -4,7 +4,7 @@
   "description": "Shoppu is a shop management system",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon ./server.js"
+    "start": "nodemon node ./server.js"
   },
   "repository": {
     "type": "git",
