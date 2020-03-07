@@ -19,14 +19,18 @@ const generateToken = (username, id) => {
 }
 
 const verifyToken = (req, res, next) => {
-  const { token } = req.headers;
+  const { authorization } = req.headers;
+  const token = authorization.split(" ")[1]
 
   if (token) {
     let userDetails;
 
     try{
       userDetails = jwt.verify(token, JWTKey)
-      if (userDetails.id) return next()
+      if (userDetails.id) {
+        res.locals.userId = userDetails.id
+        return next()
+      }
     } catch (error){
       return res
       .status(401)
@@ -45,5 +49,6 @@ const verifyToken = (req, res, next) => {
 
 
 module.exports = {
-  generateToken
+  generateToken,
+  verifyToken
 }

@@ -1,4 +1,5 @@
 const userController = require('../controllers/user.ctrl');
+const authMiddleware = require('../middlewares/auth.middleware')
 
 module.exports = (router) => {
     router
@@ -8,4 +9,8 @@ module.exports = (router) => {
     router
         .route('/user/login')
         .post(userController.LoginUser);
+
+    router
+        .route('/user/update')
+        .post(authMiddleware.verifyToken, userController.UpdateUser);
 };
