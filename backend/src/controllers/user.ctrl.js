@@ -35,7 +35,7 @@ module.exports = {
   CreateUser : async (req, res) => {
       let { username, email, password, isVendor } = req.body;
 
-      if(!email && !password) return res
+      if(!email || !password) return res
         .status(400)
         .send({ message:`Kindly provide register details to continue`});
 

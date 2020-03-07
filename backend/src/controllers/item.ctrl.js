@@ -7,7 +7,7 @@ module.exports = {
   CreateItem : async (req, res) => {
       let { name, price, shop } = req.body;
 
-      if(!name && !price) return res
+      if(!name || !price) return res
         .status(400)
         .send({ message:`Kindly provide item details to continue`});
 
