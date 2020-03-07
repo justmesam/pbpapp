@@ -9,6 +9,7 @@ dotenv.config();
 
 const databaseUrl = process.env.DATABASE_URL;
 const port = process.env.PORT;
+const documentationUrl = 'https://documenter.getpostman.com/view/2479524/SzRxV9xD?version=latest'
 
 const app = express();
 const router = express.Router();
