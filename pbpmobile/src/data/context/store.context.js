@@ -9,7 +9,8 @@ export const initialState = {
   shops: {},
   items: {},
   orders: {},
-  errors: {}
+  errors: {},
+  isAuthenicated: false
 }
 
 const StoreProvider = ({ children }) => {

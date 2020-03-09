@@ -1,33 +1,27 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Login from '../scenes/auth/screens/login.screen'
-import SignUp from '../scenes/auth/screens/signup.screen'
-import StoreProvider from '../data/context/store.context'
+import Home from '../scenes/mainapp/screens/home.screen'
+import Profile from '../scenes/mainapp/screens/profile.screen'
 
-const AuthNav = createStackNavigator()
+const MainAppNav = createStackNavigator()
 
-const AuthNavigator = ({ navigation, route }) => {
+const MainAppNavigator = ({ navigation, route }) => {
   return (
-    <StoreProvider>
-      <AuthNav.Navigator
-        screenOptions={{ headerShown: false }}
-        initialRouteName="Login"
+      <MainAppNav.Navigator
+        initialRouteName="Home"
       >
-        <AuthNav.Screen
-          name="Login"
-          component={Login}
+        <MainAppNav.Screen
+          name="Home"
+          component={Home}
         />
-        <AuthNav.Screen
-          name="SignUp"
-          component={SignUp}
+        <MainAppNav.Screen
+          name="Profile"
+          component={Profile}
         />
-      </AuthNav.Navigator>
-    </StoreProvider>
+      </MainAppNav.Navigator>
   )
 }
 
 
-export  {
-  AuthNavigator
-}
+export default MainAppNavigator

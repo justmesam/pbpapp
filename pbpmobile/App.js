@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React from 'react';
 import {
   SafeAreaView,
@@ -13,14 +5,17 @@ import {
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
-import { AuthNavigator, Login } from './src/navigators/app.navigator'
+import AppNavigator from './src/navigators'
+import StoreProvider from './src/data/context/store.context'
+
 
 const App: () => React$Node = () => {
   return (
-    <NavigationContainer>
-          <AuthNavigator />
-    </NavigationContainer>
-
+    <StoreProvider>
+      <NavigationContainer>
+        <AppNavigator />
+      </NavigationContainer>
+    </StoreProvider>
   );
 };
 
