@@ -21,17 +21,17 @@ const  fetchItems = async (dispatch, shop, limit) => {
     dispatch(creators.makeApiCall())
     let response;
 
-    if(shop) {
+    if (shop) {
       response = await getShopsItems(shop, limit)
     } else {
-      response = getItems()
+      response = await getItems()
     }
-    const { data } = response
 
+    const { data } = response
 
     return(dispatch(creators.fetchItemsSuccess(data)))
   } catch(error) {
-    return(dispatch(creators.fetchItemsFailure(error)))
+    return(dispatch(creators.fetchItemsFailure(error.response.data)))
   }
 }
 
