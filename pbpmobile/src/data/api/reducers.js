@@ -18,15 +18,15 @@ export const reducer = (state, action) => {
     case types.SIGNUP_FAILURE:
       return {...state, errors: action.error}
     case types.FETCH_ITEMS_SUCCESS:
-      return {...state, errors: action.items}
+      return {...state, items: action.items}
     case types.FETCH_ITEMS_FAILURE:
       return {...state, errors: action.error}
     case types.FETCH_ORDERS_SUCCESS:
-      return {...state, errors: action.orders}
+      return {...state, orders: action.orders}
     case types.FETCH_ORDERS_FAILURE:
       return {...state, errors: action.error}
     case types.FETCH_SHOPS_SUCCESS:
-      return {...state, errors: action.shops}
+      return {...state, shops: action.shops}
     case types.FETCH_SHOPS_FAILURE:
       return {...state, errors: action.error}
     default:

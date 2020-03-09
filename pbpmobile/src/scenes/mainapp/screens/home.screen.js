@@ -7,7 +7,8 @@ import { Input, TouchableText } from '../../common'
 
 
 const Home = () => {
-  const { dispatch } = useContext(StoreContext)
+  const { store, dispatch } = useContext(StoreContext)
+
 
   useEffect(() => {
     fetchItems(dispatch)

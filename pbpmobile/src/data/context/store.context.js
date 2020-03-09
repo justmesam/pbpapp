@@ -6,9 +6,9 @@ export const StoreContext = createContext();
 
 export const initialState = {
   user: {},
-  shops: {},
-  items: {},
-  orders: {},
+  shops: { count: 0, shops: [] },
+  items: { count: 0, items: [] },
+  orders: { count: 0, orders: []},
   errors: {},
   isAuthenicated: false
 }

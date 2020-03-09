@@ -4,6 +4,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import Home from '../scenes/mainapp/screens/home.screen'
 import Profile from '../scenes/mainapp/screens/profile.screen'
+import { Orders, Items} from '../scenes/mainapp/screens/listed.screen'
 
 const MainAppNav = createStackNavigator()
 
@@ -27,7 +28,8 @@ export const AppDrawer = ({ navigation, route }) => {
     <Drawer.Navigator initialRouteName="Home">
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="Profile" component={Profile} />
-      <Drawer.Screen name="Orders" component={Profile} />
+      <Drawer.Screen name="Orders Made" component={Orders} />
+      <Drawer.Screen name="Items Ordered" component={Items} />
     </Drawer.Navigator>
   );
 }
