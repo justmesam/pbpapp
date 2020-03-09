@@ -12,4 +12,14 @@ const signupUser = async ({username, email, password, isVendor}) => {
   return response
 }
 
-export { loginUser, signupUser }
+const getItems = async () => {
+  const response = await instance.get('/item/fetch')
+  return response
+}
+
+const getShopsItems = async (shop, limit) => {
+  const response = await instance.get(`/item/fetch/${shop}/${limit}`)
+  return response
+}
+
+export { loginUser, signupUser, getItems, getShopsItems }

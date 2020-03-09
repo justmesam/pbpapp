@@ -1,5 +1,5 @@
 import * as creators from './action.creators'
-import { loginUser, signupUser } from './action.api'
+import { loginUser, signupUser, getShopsItems, getItems } from './action.api'
 
 
 const login = async (dispatch, {email, password}) => {
@@ -16,6 +16,25 @@ const login = async (dispatch, {email, password}) => {
   }
 }
 
+const  fetchItems = async (dispatch, shop, limit) => {
+  try {
+    dispatch(creators.makeApiCall())
+    let response;
+
+    if(shop) {
+      response = await getShopsItems(shop, limit)
+    } else {
+      response = getItems()
+    }
+    const { data } = response
+
+
+    return(dispatch(creators.fetchItemsSuccess(data)))
+  } catch(error) {
+    return(dispatch(creators.fetchItemsFailure(error)))
+  }
+}
+
 const signup = async (dispatch, {email, password}) => {
   try {
     dispatch(creators.makeApiCall())
@@ -29,4 +48,4 @@ const signup = async (dispatch, {email, password}) => {
   }
 }
 
-export { login, signup}
+export { login, signup, fetchItems}

@@ -23,3 +23,13 @@ export const signupUserFailure = (error) => ({
   type: types.SIGNUP_FAILURE,
   error
 })
+
+export const fetchItemsSuccess = (items) => ({
+  type: types.FETCH_ITEMS_SUCCESS,
+  items
+})
+
+export const fetchItemsFailure = (error) => ({
+  type: types.FETCH_ITEMS_FAILURE,
+  error
+})
