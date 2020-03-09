@@ -57,14 +57,14 @@ module.exports = {
 
       return res.send({
         count: limit,
-        item: limitedOrders
+        orders: limitedOrders
       })
     }
     const allOrders = await Order.find({ customer: userId })
 
     return res.send({
       count: numberOfOrders,
-      item: allOrders
+      orders: allOrders
       })
     }
 };
