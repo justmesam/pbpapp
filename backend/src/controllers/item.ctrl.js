@@ -36,7 +36,7 @@ module.exports = {
   FetchItems : async (req, res) => {
     let shop = req.params.shop
     let limit = parseInt(req.params.limit, 10)
-    const numberOfItems
+    let numberOfItems
 
     if(shop) {
       numberOfItems = await Item.countDocuments({ shop: shop })
