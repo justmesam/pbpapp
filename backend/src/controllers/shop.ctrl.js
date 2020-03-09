@@ -12,7 +12,6 @@ module.exports = {
 
     let numberOfOrders = await Order.countDocuments({ customer: userId })
 
-    if(numberOfOrders < 1) return res.status(404).send({message: ""})
 
     if (limit && limit < numberOfOrders) {
       allOrders = await Order
