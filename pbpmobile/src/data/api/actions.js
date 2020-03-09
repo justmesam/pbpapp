@@ -1,6 +1,12 @@
 import * as creators from './action.creators'
-import { loginUser, signupUser, getShopsItems, getItems } from './action.api'
 import { storeToken, retrieveToken } from './action.token'
+import {
+  loginUser,
+  signupUser,
+  getShopsItems,
+  getItems,
+  getOrders,
+  getShops } from './action.api'
 
 
 const login = async (dispatch, {email, password}) => {
@@ -19,6 +25,32 @@ const login = async (dispatch, {email, password}) => {
 
   } catch(error) {
     return(dispatch(creators.loginUserFailure(error)))
+  }
+}
+
+const  fetchShops = async (dispatch, limit) => {
+  try {
+    dispatch(creators.makeApiCall())
+    const response = await getShops(limit)
+
+    const { data } = response
+
+    return(dispatch(creators.fetchShopsSuccess(data)))
+  } catch(error) {
+    return(dispatch(creators.fetchShopsFailure(error.response.data)))
+  }
+}
+
+const  fetchOrders = async (dispatch, limit) => {
+  try {
+    dispatch(creators.makeApiCall())
+    const response = await getOrders(limit)
+
+    const { data } = response
+
+    return(dispatch(creators.fetchOrdersSuccess(data)))
+  } catch(error) {
+    return(dispatch(creators.fetchOrdersFailure(error.response.data)))
   }
 }
 
@@ -54,4 +86,4 @@ const signup = async (dispatch, {email, password}) => {
   }
 }
 
-export { login, signup, fetchItems}
+export { login, signup, fetchItems, fetchShops, fetchOrders}

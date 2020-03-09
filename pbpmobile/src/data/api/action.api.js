@@ -22,4 +22,21 @@ const getShopsItems = async (shop, limit) => {
   return response
 }
 
-export { loginUser, signupUser, getItems, getShopsItems }
+const getOrders = async (limit) => {
+  const response = await instance.get(`/order/fetch/${limit}`)
+  return response
+}
+
+const getShops = async (limit) => {
+  const response = await instance.get(`/shop/fetch/${limit}`)
+  return response
+}
+
+export {
+  loginUser,
+  signupUser,
+  getItems,
+  getShopsItems,
+  getOrders,
+  getShops
+}

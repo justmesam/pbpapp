@@ -38,3 +38,23 @@ export const fetchItemsFailure = (error) => ({
   type: types.FETCH_ITEMS_FAILURE,
   error
 })
+
+export const fetchOrdersSuccess = (orders) => ({
+  type: types.FETCH_ORDERS_SUCCESS,
+  orders
+})
+
+export const fetchOrdersFailure = (error) => ({
+  type: types.FETCH_ORDERS_FAILURE,
+  error
+})
+
+export const fetchShopsSuccess = (shops) => ({
+  type: types.FETCH_SHOPS_SUCCESS,
+  shops
+})
+
+export const fetchShopsFailure = (error) => ({
+  type: types.FETCH_SHOPS_FAILURE,
+  error
+})
