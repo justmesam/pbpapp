@@ -1,21 +1,21 @@
 {
-  "name": "shoppu",
+  "name": "pbpapp",
   "version": "1.0.0",
-  "description": "Shoppu is a shop management system",
+  "description": "Pbpapp is a shop management system",
   "main": "server.js",
   "scripts": {
     "start": "nodemon node ./server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/justmesam/shoppu.git"
+    "url": "git+https://github.com/justmesam/pbpapp.git"
   },
   "author": "justmesam",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/justmesam/shoppu/issues"
+    "url": "https://github.com/justmesam/pbpapp/issues"
   },
-  "homepage": "https://github.com/justmesam/shoppu#readme",
+  "homepage": "https://github.com/justmesam/pbpapp#readme",
   "dependencies": {
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",

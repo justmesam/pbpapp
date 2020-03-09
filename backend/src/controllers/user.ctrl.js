@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const User = require('../models/user.model');
 const Shop = require('../models/shop.model')
 
-const authMidlleware = require('../middlewares/auth.middleware')
+const authMiddleware = require('../middlewares/auth.middleware')
 
 const handleShop = async (shopDetails, user, res) => {
   const { name,latitude, longitude} = shopDetails
@@ -59,7 +59,7 @@ module.exports = {
 
       await user.save()
 
-      const token = authMidlleware.generateToken(user.username, user._id)
+      const token = authMiddleware.generateToken(user.username, user._id)
 
       const userObject = {
         email: user.email,
@@ -71,7 +71,7 @@ module.exports = {
       }
 
       res.send({
-        message: `Welcome to shoppu, ${username}`,
+        message: `Welcome to pbpapp, ${username}`,
         user: userObject
       })
   },
@@ -86,7 +86,7 @@ module.exports = {
       const verifyPassword = await bcrypt.compare(password, user.password);
 
       if(verifyPassword) {
-        const token = authMidlleware.generateToken(user.username, user._id)
+        const token = authMiddleware.generateToken(user.username, user._id)
 
         const userObject = {
           email: user.email,

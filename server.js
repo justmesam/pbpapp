@@ -31,4 +31,4 @@ backend(router);
 
 app.use(bodyParser.json())
 app.use('/api', router);
-app.listen(port, () => console.log(`shoppu is running on port :: ${port}`))
+app.listen(port, () => console.log(`pbpapp is running on port :: ${port}`))
