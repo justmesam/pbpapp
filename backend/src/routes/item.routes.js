@@ -10,4 +10,8 @@ module.exports = (router) => {
     router
         .route('/item/fetch/:shop/:limit?')
         .get(authMiddleware.verifyToken, itemController.FetchItems);
+
+    router
+        .route('/item/fetch')
+        .get(authMiddleware.verifyToken, itemController.FetchItems);
 };
