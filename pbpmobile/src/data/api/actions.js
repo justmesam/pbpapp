@@ -1,5 +1,6 @@
 import * as creators from './action.creators'
 import { loginUser, signupUser, getShopsItems, getItems } from './action.api'
+import { storeToken, retrieveToken } from './action.token'
 
 
 const login = async (dispatch, {email, password}) => {
@@ -10,7 +11,11 @@ const login = async (dispatch, {email, password}) => {
 
     const { data } = response
 
-    return(dispatch(creators.loginUserSuccess(data)))
+    if(data.user) {
+      storeToken('userKey', data.user.userKey)
+      return(dispatch(creators.loginUserSuccess(data)))
+    }
+
   } catch(error) {
     return(dispatch(creators.loginUserFailure(error)))
   }
