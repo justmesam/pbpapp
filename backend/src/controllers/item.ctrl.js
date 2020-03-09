@@ -36,9 +36,10 @@ module.exports = {
   FetchItems : async (req, res) => {
     let shop = req.params.shop
     let limit = parseInt(req.params.limit, 10)
+    let numberOfItems
 
     if(shop) {
-      const numberOfItems = await Item.countDocuments({ shop: shop })
+      numberOfItems = await Item.countDocuments({ shop: shop })
 
       if (limit && limit < numberOfItems) {
         const limitedItems = await Item
@@ -58,6 +59,12 @@ module.exports = {
         item: allItems
       })
     }
-    res.status(400).send({ message: `Provide shop id to get items`})
+    numberOfItems = await Item.countDocuments({ shop: shop })
+    const allItems = await Item.find()
+
+    return res.send({
+      count: numberOfItems,
+      item: allItems
+    })
   }
 };
