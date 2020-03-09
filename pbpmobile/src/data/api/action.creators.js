@@ -4,6 +4,11 @@ export const makeApiCall = () => ({
   type: types.INITIATE_API_CALL
 })
 
+export const setUser = (user) => ({
+  type: types.SET_USER,
+  user
+})
+
 export const loginUserSuccess = (user) => ({
   type: types.LOGIN_SUCCESS,
   user

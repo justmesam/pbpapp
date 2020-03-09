@@ -13,6 +13,7 @@ const login = async (dispatch, {email, password}) => {
 
     if(data.user) {
       storeToken('userKey', data.user.userKey)
+      storeToken('user', JSON.stringify(data.user))
       return(dispatch(creators.loginUserSuccess(data)))
     }
 
