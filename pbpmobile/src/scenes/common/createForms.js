@@ -58,7 +58,7 @@ const ItemForm = ({ itemDetails, handleDetails, toggleModal, handleAddItem, show
               handlePress={() => toggleModal(!showModal)} />
             <TouchableText
               text="Update"
-              handlePress={() => handleAddItem(itemDetails)} />
+              handlePress={() => handleAddItem()} />
           </View >
         </View>
 

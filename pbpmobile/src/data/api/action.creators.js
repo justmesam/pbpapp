@@ -93,9 +93,9 @@ export const fetchUserFailure = (error) => ({
   error
 })
 
-export const createItemSuccess = (user) => ({
+export const createItemSuccess = (item) => ({
   type: types.CREATE_ITEM_SUCCESS,
-  user
+  item
 })
 
 export const createItemFailure = (error) => ({

@@ -1,5 +1,6 @@
 import React, { Fragment, useContext, useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
+import moment from 'moment'
 
 import { TouchableText } from '../../common'
 import { StoreContext} from '../../../data/context/store.context'
@@ -28,9 +29,13 @@ const Items = () => {
       {
         items.count < 1
         ? <Text> You haven't ordered any items yet.</Text>
-        : items.items.map((item, i) => {
-          <Text>{item.name}</Text>
-        })
+        : items.items.map((item, i) => (
+          <View key={i}>
+            <Text>{item.name}</Text>
+            <Text>{item.price}</Text>
+            <Text> Date Created: {moment(item.dateCreated).format("DD/MM/YYYY")} </Text>
+          </View>
+        ))
       }
       </View>
   )

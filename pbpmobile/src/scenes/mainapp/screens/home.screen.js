@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, TextInput } from 'react-native';
 import Modal from "react-native-modal";
+import moment from 'moment'
 
 import { fetchItems, fetchShops, fetchOrders, createItemAction,  fetchUserAction } from '../../../data/api/actions'
 import { setNavigations } from '../../../data/api/action.creators'
@@ -34,7 +35,8 @@ const Home = (props) => {
     setItemDetails({...itemDetails, [key]: text})
   }
 
-  const handleAddItem = (item) => {
+  const handleAddItem = () => {
+    const item = {...itemDetails, shop: user.shop.id}
     createItemAction(dispatch, item)
     toggleModal(!showModal)
   }
@@ -53,9 +55,13 @@ const Home = (props) => {
       {
         items.count < 1
         ? <Text> No Items to order available.</Text>
-        : items.items.map((item, i) => {
-          <Text>{item.name}</Text>
-        })
+        : items.items.map((item, i) => (
+          <View key={i}>
+            <Text>{item.name}</Text>
+            <Text>{item.price}</Text>
+            <Text> Date Created: {moment(item.dateCreated).format("DD/MM/YYYY")} </Text>
+          </View>
+        ))
       }
 
         {
