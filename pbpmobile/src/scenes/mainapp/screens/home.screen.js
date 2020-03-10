@@ -11,6 +11,7 @@ import { Input, TouchableText } from '../../common'
 const Home = (props) => {
   const { navigation } = props
   const { store, dispatch } = useContext(StoreContext)
+  const { user, items } = store
 
 
   useEffect(() => {
@@ -22,7 +23,20 @@ const Home = (props) => {
 
   return (
     <View>
-      <Text> Items Will be displayed here </Text>
+      {
+        items.count < 1
+        ? <Text> No Items to order available.</Text>
+        : items.items.map((item, i) => {
+          <Text>{item.name}</Text>
+        })
+      }
+
+        {
+          user.isVendor &&
+          <TouchableText
+            text="Add Item"
+            handlePress={() => {}} />
+        }
     </View>
   );
 }
