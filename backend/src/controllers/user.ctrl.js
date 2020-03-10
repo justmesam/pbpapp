@@ -137,16 +137,15 @@ module.exports = {
 
       await user.save()
 
-      const shopDetails = JSON.stringify(shop) === '{}'
-                ? {}
-                : {
-                  id: shop._id,
-                  name: shop.name,
-                  longitude: shop.longitude,
-                  latitude: shop.latitude,
-                  vendor: shop.vendor,
-                  dateCtreated: shop.dateCtreated
-                }
+      const shopDetails = shop ? {
+        id: shop._id,
+        name: shop.name,
+        longitude: shop.longitude,
+        latitude: shop.latitude,
+        vendor: shop.vendor,
+        dateCreated: shop.dateCreated
+      } : {}
+
 
       const responseObject = {
         email: user.email,
