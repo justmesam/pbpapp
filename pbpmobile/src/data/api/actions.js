@@ -1,12 +1,13 @@
 import * as creators from './action.creators'
-import { storeToken, retrieveToken } from './action.token'
+import { storeToken, retrieveToken, removeToken } from './action.token'
 import {
   loginUser,
   signupUser,
   getShopsItems,
   getItems,
   getOrders,
-  getShops } from './action.api'
+  getShops,
+  updateUser } from './action.api'
 
 
 const login = async (dispatch, {email, password}) => {
@@ -80,10 +81,43 @@ const signup = async (dispatch, {email, password}) => {
     const response = await signupUser({username, email, password, isVendor})
     const { data } = response
 
-    return(dispatch(creators.signupUserSuccess(data)))
+    if(data.user) {
+      storeToken('userKey', data.user.userKey)
+      storeToken('user', JSON.stringify(data.user))
+      return(dispatch(creators.signupUserSuccess(data)))
+    }
   } catch(error) {
     return(dispatch(creators.signupUserFailure(error)))
   }
 }
 
-export { login, signup, fetchItems, fetchShops, fetchOrders}
+const updateUserAction = async (dispatch, data) => {
+  try {
+    dispatch(creators.makeApiCall())
+
+    const response = await updateUser(data)
+
+    const { data } = response
+
+    if(data) {
+      storeToken('userKey', data.userKey)
+      storeToken('user', JSON.stringify(data))
+      return(dispatch(creators.updateUserSuccess(data)))
+    }
+
+  } catch(error) {
+    return(dispatch(creators.updateUserFailure(error)))
+  }
+}
+
+const logout = async (dispatch) => {
+  try {
+    removeToken('userKey')
+    removeToken('user')
+    return(dispatch(creators.logoutSuccess()))
+  } catch (e) {
+    return(dispatch(creators.logoutFailure()))
+  }
+}
+
+export { login, signup, fetchItems, fetchShops, fetchOrders, updateUserAction, logout}

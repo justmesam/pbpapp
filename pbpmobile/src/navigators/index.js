@@ -8,12 +8,12 @@ import MainAppNavigator from './app.navigator'
 import AuthNavigator from './auth.navigator'
 
 const AppNavigator = () => {
-  const [ route, setRoute] = useState('home')
+  const [ route, setRoute] = useState('auth')
   const { store, dispatch } = useContext(StoreContext)
 
   useEffect(() => {
     handleIsAuthenticated()
-  }, [])
+  }, [store.isAuthenicated])
 
   const handleIsAuthenticated = async () => {
     const { isAuthenicated } = store

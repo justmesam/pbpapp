@@ -32,11 +32,17 @@ const getShops = async (limit) => {
   return response
 }
 
+const updateUser = async (data) => {
+  const response = await instance.post('/user/update', data )
+  return response
+}
+
 export {
   loginUser,
   signupUser,
   getItems,
   getShopsItems,
   getOrders,
-  getShops
+  getShops,
+  updateUser
 }

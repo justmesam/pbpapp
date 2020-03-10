@@ -12,7 +12,7 @@ export const reducer = (state, action) => {
     case types.SIGNUP_SUCCESS:
       return {...state, user: action.user.user, isAuthenicated: true}
     case types.SET_USER:
-      return {...state, user: action.user}
+      return {...state, user: action.user, isAuthenicated: true}
     case types.SET_NAVIGATIONS:
       return {...state, navigation: action.navigation}
     case types.LOGIN_FAILURE:
@@ -31,6 +31,12 @@ export const reducer = (state, action) => {
       return {...state, shops: action.shops}
     case types.FETCH_SHOPS_FAILURE:
       return {...state, errors: action.error}
+    case types.UPDATE_USER_SUCCESS:
+      return {...state, user: action.user}
+    case types.UPDATE_USER_FAILURE:
+      return {...state, errors: action.error}
+      case types.UPDATE_USER_SUCCESS:
+        return {...state, user: {}, isAuthenicated: false, errors: {},}
     default:
       return state
   }

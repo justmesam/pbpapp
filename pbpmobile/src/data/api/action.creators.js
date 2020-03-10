@@ -63,3 +63,22 @@ export const fetchShopsFailure = (error) => ({
   type: types.FETCH_SHOPS_FAILURE,
   error
 })
+
+export const updateUserSuccess = (user) => ({
+  type: types.UPDATE_USER_SUCCESS,
+  user
+})
+
+export const updateUserFailure = (error) => ({
+  type: types.UPDATE_USER_FAILURE,
+  error
+})
+
+export const logoutSuccess = () => ({
+  type: types.LOGOUT_SUCCESS
+})
+
+export const logoutFailure = (error) => ({
+  type: types.LOGOUT_FAILURE,
+  error
+})
