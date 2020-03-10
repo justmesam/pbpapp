@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const Order = require('../models/order.model');
 const Shop = require('../models/shop.model');
+const Item = require('../models/item.model');
 
 
 module.exports = {
@@ -51,5 +52,40 @@ module.exports = {
         count : numberOfOrders,
         shops: allShops
       })
-    }
+    },
+    AllShops : async (req, res) => {
+      const userId = res.locals.userId
+
+      let numberOfShops = await Shop.countDocuments()
+
+      if (numberOfShops < 1) return res.send({
+        count : numberOfShops,
+        shops: []
+      })
+
+      const shops = allOrders = await Shop.find()
+
+      const allShops = await Promise.all(
+        shops.map(async (shop) => {
+            const shopId = shop._id
+
+            const items = await Item.find({ shop : shopId })
+            const responseObj = {
+              id: shop._id,
+              name: shop.name,
+              longitude: shop.longitude,
+              latitude: shop.latitude,
+              vendor: shop.vendor,
+              dateCtreated: shop.dateCtreated,
+              items: items
+            }
+
+            return responseObj
+      }))
+
+        return res.send({
+          count : numberOfShops,
+          shops: allShops
+        })
+      }
 };
