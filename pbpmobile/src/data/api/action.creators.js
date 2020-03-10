@@ -82,3 +82,13 @@ export const logoutFailure = (error) => ({
   type: types.LOGOUT_FAILURE,
   error
 })
+
+export const fetchUserSuccess = (user) => ({
+  type: types.FETCH_CURRENT_USER_SUCCESS,
+  user
+})
+
+export const fetchUserFailure = (error) => ({
+  type: types.FETCH_CURRENT_USER_FAILURE,
+  error
+})

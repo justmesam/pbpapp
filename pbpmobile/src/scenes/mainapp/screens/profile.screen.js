@@ -6,7 +6,7 @@ import { View, Text } from 'react-native';
 
 import { TouchableText, Input } from '../../common'
 import { StoreContext} from '../../../data/context/store.context'
-import { updateUserAction } from '../../../data/api/actions'
+import { updateUserAction, fetchUserAction } from '../../../data/api/actions'
 
 const Profile = () => {
   const { store, dispatch } = useContext(StoreContext)
@@ -19,6 +19,9 @@ const Profile = () => {
     isVendor: user.isVendor,
   })
 
+  useEffect(() => {
+    fetchUserAction(dispatch)
+  }, [])
 
   const handleDetails = (key, text) => {
     setUserDetails({...userDetails, [key]: text})
@@ -26,6 +29,8 @@ const Profile = () => {
 
   const handleUpdate = () => {
     updateUserAction(dispatch, userDetails)
+    toggleModal(!showModal)
+    fetchUserAction(dispatch)
   }
 
   return (

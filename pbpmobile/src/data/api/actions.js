@@ -7,7 +7,8 @@ import {
   getItems,
   getOrders,
   getShops,
-  updateUser } from './action.api'
+  updateUser,
+  fetchUser } from './action.api'
 
 
 const login = async (dispatch, {email, password}) => {
@@ -99,14 +100,31 @@ const updateUserAction = async (dispatch, data) => {
 
     const { data } = response
 
-    if(data) {
-      storeToken('userKey', data.userKey)
-      storeToken('user', JSON.stringify(data))
-      return(dispatch(creators.updateUserSuccess(data)))
+    if(data.responseObject) {
+      storeToken('user', JSON.stringify(data.responseObject))
+      return(dispatch(creators.updateUserSuccess(data.responseObject)))
     }
 
   } catch(error) {
     return(dispatch(creators.updateUserFailure(error)))
+  }
+}
+
+const fetchUserAction = async (dispatch) => {
+  try {
+    dispatch(creators.makeApiCall())
+
+    const response = await fetchUser()
+
+    const { data } = response
+
+    if(data.user) {
+      storeToken('user', JSON.stringify(data.user))
+      return(dispatch(creators.fetchUserSuccess(data.user)))
+    }
+
+  } catch(error) {
+    return(dispatch(creators.fetchUserFailure(error)))
   }
 }
 
@@ -120,4 +138,4 @@ const logout = async (dispatch) => {
   }
 }
 
-export { login, signup, fetchItems, fetchShops, fetchOrders, updateUserAction, logout}
+export { login, signup, fetchItems, fetchUserAction, fetchShops, fetchOrders, updateUserAction, logout}

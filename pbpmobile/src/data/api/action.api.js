@@ -37,6 +37,11 @@ const updateUser = async (data) => {
   return response
 }
 
+const fetchUser = async () => {
+  const response = await instance.get('/user')
+  return response
+}
+
 export {
   loginUser,
   signupUser,
@@ -44,5 +49,6 @@ export {
   getShopsItems,
   getOrders,
   getShops,
-  updateUser
+  updateUser,
+  fetchUser
 }

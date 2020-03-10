@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Text, View, TextInput } from 'react-native';
 
-import { fetchItems, fetchShops, fetchOrders } from '../../../data/api/actions'
+import { fetchItems, fetchShops, fetchOrders, fetchUserAction } from '../../../data/api/actions'
 import { setNavigations } from '../../../data/api/action.creators'
 import Header from './header.screen'
 import { StoreContext } from '../../../data/context/store.context'
@@ -18,6 +18,7 @@ const Home = (props) => {
     fetchItems(dispatch)
     fetchOrders(dispatch)
     fetchShops(dispatch)
+    fetchUserAction(dispatch)
     dispatch(setNavigations(navigation))
   }, [])
 
