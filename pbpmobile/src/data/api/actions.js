@@ -8,7 +8,8 @@ import {
   getOrders,
   getShops,
   updateUser,
-  fetchUser } from './action.api'
+  fetchUser,
+  createItem } from './action.api'
 
 
 const login = async (dispatch, {email, password}) => {
@@ -119,6 +120,7 @@ const fetchUserAction = async (dispatch) => {
     const { data } = response
 
     if(data.user) {
+      storeToken('userKey', data.user.userKey)
       storeToken('user', JSON.stringify(data.user))
       return(dispatch(creators.fetchUserSuccess(data.user)))
     }
@@ -138,4 +140,18 @@ const logout = async (dispatch) => {
   }
 }
 
-export { login, signup, fetchItems, fetchUserAction, fetchShops, fetchOrders, updateUserAction, logout}
+const createItemAction = async (dispatch, item) => {
+  try {
+    dispatch(creators.makeApiCall())
+
+    const response = await createItem(item)
+
+    const { data } = response
+    return(dispatch(creators.createItemSuccess(data)))
+
+  } catch(error) {
+    return(dispatch(creators.createItemFailure(error)))
+  }
+}
+
+export { login, signup, fetchItems, fetchUserAction, fetchShops, fetchOrders, createItemAction, updateUserAction, logout}

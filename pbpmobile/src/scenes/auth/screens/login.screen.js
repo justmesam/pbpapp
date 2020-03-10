@@ -29,10 +29,12 @@ const Login = () => {
         placeholder="Email"
         value={userDetails.email}
         handleOnchange={(text) => handleDetails('email', text)}
+        keyboardType={'email-address'}
         />
       <Input
         placeholder="Password"
         value={userDetails.password}
+        secureTextEntry={true}
         handleOnchange={(text) => handleDetails('password', text)}
         />
       <TouchableText

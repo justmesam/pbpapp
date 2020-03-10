@@ -13,7 +13,7 @@ module.exports = {
 
       const item = Item({
         name: name,
-        price: price,
+        price: parseInt(price, 10),
         shop: mongoose.Types.ObjectId(shop)
       })
 

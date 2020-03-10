@@ -43,6 +43,15 @@ export const reducer = (state, action) => {
       return {...state, user: action.user}
     case types.FETCH_CURRENT_USER_FAILURE:
       return {...state, errors: action.error}
+    case types.CREATE_ITEM_SUCCESS:
+      return {...state,
+        items: {
+          ...state.items,
+          count: state.items.count + 1,
+          items : [...state.items.items, action.item.item]
+        }}
+    case types.CREATE_ITEM_FAILURE:
+      return {...state, errors: action.error}
     default:
       return state
   }

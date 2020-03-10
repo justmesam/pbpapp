@@ -31,7 +31,7 @@ const UpdateDetails = ({ userDetails, handleDetails, toggleModal, handleUpdate, 
               handlePress={() => toggleModal(!showModal)} />
             <TouchableText
               text="Update"
-              handlePress={() => handleUpdate()} />
+              handlePress={() => handleUpdate(userDetails)} />
           </View >
         </View>
 

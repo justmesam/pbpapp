@@ -37,6 +37,11 @@ const updateUser = async (data) => {
   return response
 }
 
+const createItem = async (data) => {
+  const response = await instance.post('/item/create', data )
+  return response
+}
+
 const fetchUser = async () => {
   const response = await instance.get('/user')
   return response
@@ -50,5 +55,6 @@ export {
   getOrders,
   getShops,
   updateUser,
-  fetchUser
+  fetchUser,
+  createItem
 }
