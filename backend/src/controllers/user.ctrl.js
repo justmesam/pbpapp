@@ -67,7 +67,8 @@ module.exports = {
         id: user._id,
         isVendor: user.isVendor,
         userKey: token,
-        dateJoined: user.dateJoined
+        dateJoined: user.dateJoined,
+        shop: {}
       }
 
       res.send({
@@ -94,7 +95,8 @@ module.exports = {
           id: user._id,
           isVendor: user.isVendor,
           dateJoined: user.dateJoined,
-          userKey: token
+          userKey: token,
+          shop: {}
         }
 
         return res.send({
