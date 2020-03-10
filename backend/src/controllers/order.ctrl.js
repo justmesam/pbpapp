@@ -68,7 +68,7 @@ module.exports = {
 
           const allItems = await Promise.all(
             order.items.map(async (id) => {
-                const item = await Item.find({ _id : id })
+                const item = await Item.findOne({ _id : id })
 
                 return item
           }))
