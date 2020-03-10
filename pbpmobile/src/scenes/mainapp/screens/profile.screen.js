@@ -4,7 +4,7 @@ import Modal from "react-native-modal";
 import { CheckBox } from 'react-native-elements'
 import { View, Text } from 'react-native';
 
-import { TouchableText, Input } from '../../common'
+import { TouchableText, Input, UpdateDetails } from '../../common'
 import { StoreContext} from '../../../data/context/store.context'
 import { updateUserAction, fetchUserAction } from '../../../data/api/actions'
 
@@ -36,34 +36,12 @@ const Profile = () => {
   return (
       <View>
         <Modal isVisible={showModal} onBackdropPress={() => toggleModal(!showModal)}>
-          <View >
-            <Input
-              placeholder="Username"
-              value={userDetails.username}
-              handleOnchange={(text) => handleDetails('username', text)}
-              />
-            <Input
-              placeholder="Email"
-              value={userDetails.email}
-              handleOnchange={(text) => handleDetails('email', text)}
-              />
-              <CheckBox
-                title='User is vendor'
-                iconRight
-                checked={userDetails.isVendor}
-                checkedIcon='dot-circle-o'
-                uncheckedIcon='circle-o'
-                onPress={() => handleDetails('isVendor', !userDetails.isVendor)}
-              />
-            <View>
-              <TouchableText
-                text="Cancel"
-                handlePress={() => toggleModal(!showModal)} />
-              <TouchableText
-                text="Update"
-                handlePress={() => handleUpdate()} />
-            </View >
-          </View>
+          <UpdateDetails
+            showModal={showModal}
+            toggleModal={toggleModal}
+            handleDetails={handleDetails}
+            userDetails={userDetails}
+            handleUpdate={handleUpdate} />
         </Modal>
         <Text> Name: {user.username} </Text>
         <Text> Email: {user.email} </Text>

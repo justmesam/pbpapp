@@ -92,11 +92,11 @@ const signup = async (dispatch, {email, password}) => {
   }
 }
 
-const updateUserAction = async (dispatch, data) => {
+const updateUserAction = async (dispatch, userDetails) => {
   try {
     dispatch(creators.makeApiCall())
 
-    const response = await updateUser(data)
+    const response = await updateUser(userDetails)
 
     const { data } = response
 
