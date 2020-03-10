@@ -65,10 +65,15 @@ const Home = (props) => {
       }
 
         {
-          (user.isVendor && Object.keys(user.shop).length > 0 ) &&
-          <TouchableText
-            text="Add Item"
-            handlePress={() => toggleModal(!showModal)} />
+          (user.isVendor && Object.keys(user.shop).length > 0 )
+            ? <TouchableText
+                text="Add Item"
+                handlePress={() => toggleModal(!showModal)} />
+            : <TouchableText
+                text={`All Vendors Must have a shop!
+                  \nClick me or navigate to your profile to create one`}
+                handlePress={() => navigation.navigate('Profile')}
+              />
         }
     </View>
   );
