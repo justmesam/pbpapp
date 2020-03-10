@@ -59,7 +59,7 @@ module.exports = {
         items: allItems
       })
     }
-    numberOfItems = await Item.countDocuments({ shop: shop })
+    numberOfItems = await Item.countDocuments()
     const allItems = await Item.find()
 
     return res.send({
