@@ -10,6 +10,7 @@ export const initialState = {
   items: { count: 0, items: [] },
   orders: { count: 0, orders: []},
   errors: {},
+  navigation: {},
   isAuthenicated: false
 }
 

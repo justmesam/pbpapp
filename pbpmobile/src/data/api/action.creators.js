@@ -9,6 +9,11 @@ export const setUser = (user) => ({
   user
 })
 
+export const setNavigations = (navigation) => ({
+  type: types.SET_NAVIGATIONS,
+  navigation
+})
+
 export const loginUserSuccess = (user) => ({
   type: types.LOGIN_SUCCESS,
   user

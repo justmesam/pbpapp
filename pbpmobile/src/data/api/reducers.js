@@ -13,6 +13,8 @@ export const reducer = (state, action) => {
       return {...state, user: action.user.user, isAuthenicated: true}
     case types.SET_USER:
       return {...state, user: action.user}
+    case types.SET_NAVIGATIONS:
+      return {...state, navigation: action.navigation}
     case types.LOGIN_FAILURE:
       return {...state, errors: action.error}
     case types.SIGNUP_FAILURE:
