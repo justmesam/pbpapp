@@ -1,5 +1,4 @@
 import React from 'react';
-import { CheckBox } from 'react-native-elements'
 import { View } from 'react-native';
 
 import Input from './input'

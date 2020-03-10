@@ -9,7 +9,7 @@ import styles from '../styles'
 
 const defaultValues = { email: '', password: ''}
 
-const Login = () => {
+const Login = ({ navigation }) => {
   const [userDetails, setUserDetails] = useState(defaultValues)
   const { dispatch } = useContext(StoreContext)
 
@@ -41,7 +41,10 @@ const Login = () => {
         text="Login"
         handlePress={() => handleLogin()}
         />
-
+      <TouchableText
+        text="Don't have an account? Sign Up"
+        handlePress={() => navigation.navigate('SignUp')}
+        />
     </View>
   );
 }

@@ -1,7 +1,6 @@
 import React, { Fragment, useContext, useState, useEffect } from 'react';
 import moment from 'moment'
 import Modal from "react-native-modal";
-import { CheckBox } from 'react-native-elements'
 import { View, Text } from 'react-native';
 
 import { TouchableText, Input, UpdateDetails, ShopForm } from '../../common'
@@ -82,15 +81,16 @@ const Profile = () => {
         }
 
         {
-          (user.isVendor && Object.keys(user.shop).length  < 1 )
+          user.isVendor &&
+          (Object.keys(user.shop).length < 1 
             ? <TouchableText
-              text="Create a shop"
-              handlePress={() => handleShopModal()} />
+                text="Create a shop"
+                handlePress={() => handleShopModal()} />
             : <View>
                 <Text> Shop</Text>
                 <Text> name: {user.shop.name} </Text>
                 <Text> Date Created: {moment(user.shop.dateCreated).format("DD/MM/YYYY")} </Text>
-              </View>
+              </View>)
         }
 
         <TouchableText

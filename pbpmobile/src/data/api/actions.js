@@ -76,7 +76,7 @@ const  fetchItems = async (dispatch, shop, limit) => {
   }
 }
 
-const signup = async (dispatch, {email, password}) => {
+const signup = async (dispatch, {username, email, password, isVendor}) => {
   try {
     dispatch(creators.makeApiCall())
 
