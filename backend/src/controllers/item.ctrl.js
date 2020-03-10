@@ -49,14 +49,14 @@ module.exports = {
 
         return res.send({
           count: limit,
-          item: limitedItems
+          items: limitedItems
         })
       }
       const allItems = await Item.find({ shop: shop })
 
       return res.send({
         count: numberOfItems,
-        item: allItems
+        items: allItems
       })
     }
     numberOfItems = await Item.countDocuments({ shop: shop })
@@ -64,7 +64,7 @@ module.exports = {
 
     return res.send({
       count: numberOfItems,
-      item: allItems
+      items: allItems
     })
   }
 };

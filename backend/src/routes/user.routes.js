@@ -13,4 +13,8 @@ module.exports = (router) => {
     router
         .route('/user/update')
         .post(authMiddleware.verifyToken, userController.UpdateUser);
+
+    router
+        .route('/user')
+        .get(authMiddleware.verifyToken, userController.FetchUser)
 };

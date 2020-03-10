@@ -25,6 +25,11 @@ module.exports = {
       .sort({ _id: -1 })
       }
 
+      if(numberOfOrders < 1) return res.send({
+        count : numberOfOrders,
+        shops: []
+      })
+
       const allShops = await Promise.all(
         allOrders.map(async (order) => {
             const shopId = order.shop

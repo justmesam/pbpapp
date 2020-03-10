@@ -137,20 +137,23 @@ module.exports = {
 
       await user.save()
 
+      const shopDetails = shop ? {
+        id: shop._id,
+        name: shop.name,
+        longitude: shop.longitude,
+        latitude: shop.latitude,
+        vendor: shop.vendor,
+        dateCreated: shop.dateCreated
+      } : {}
+
+
       const responseObject = {
         email: user.email,
         username: user.username,
         id: user._id,
         isVendor: user.isVendor,
         dateJoined: user.dateJoined,
-        shop: {
-          id: shop._id,
-          name: shop.name,
-          longitude: shop.longitude,
-          latitude: shop.latitude,
-          vendor: shop.vendor,
-          dateCtreated: shop.dateCtreated
-        }
+        shop: shopDetails
       }
 
       return res.send({
@@ -162,5 +165,41 @@ module.exports = {
     return res
       .status(400)
       .send({ message:`Kindly provide items to be updated`});
+  },
+  FetchUser: async (req, res) => {
+    const userId = res.locals.userId;
+    let shop;
+
+    const user = await User.findOne({
+      _id: userId
+    });
+
+    shop = await Shop.findOne({
+      vendor: userId
+    });
+
+
+    const shopDetails = shop ? {
+      id: shop._id,
+      name: shop.name,
+      longitude: shop.longitude,
+      latitude: shop.latitude,
+      vendor: shop.vendor,
+      dateCreated: shop.dateCreated
+    } : {}
+
+
+    const responseObject = {
+      email: user.email,
+      username: user.username,
+      id: user._id,
+      isVendor: user.isVendor,
+      dateJoined: user.dateJoined,
+      shop: shopDetails
+    }
+
+    return res.send({
+      user : responseObject
+    })
   }
 };
