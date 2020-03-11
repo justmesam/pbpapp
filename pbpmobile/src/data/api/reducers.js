@@ -45,7 +45,7 @@ export const reducer = (state, action) => {
     case types.UPDATE_USER_FAILURE:
       return {...state, errors: action.error}
     case types.LOGOUT_SUCCESS:
-      return {...state, user: {}, isAuthenicated: false, errors: {},}
+      return {...state, user: {}, loading: false, isAuthenicated: false, errors: {},}
     case types.LOGOUT_FAILURE:
       return {...state, errors: action.error}
     case types.FETCH_CURRENT_USER_SUCCESS:
