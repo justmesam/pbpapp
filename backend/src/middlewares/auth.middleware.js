@@ -31,6 +31,7 @@ const verifyToken = (req, res, next) => {
         userDetails = jwt.verify(token, JWTKey)
         if (userDetails.id) {
           res.locals.userId = userDetails.id
+          res.locals.userKey = token
           return next()
         }
       } catch (error){

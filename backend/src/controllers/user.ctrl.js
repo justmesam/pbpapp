@@ -67,7 +67,8 @@ module.exports = {
         id: user._id,
         isVendor: user.isVendor,
         userKey: token,
-        dateJoined: user.dateJoined
+        dateJoined: user.dateJoined,
+        shop: {}
       }
 
       res.send({
@@ -94,7 +95,8 @@ module.exports = {
           id: user._id,
           isVendor: user.isVendor,
           dateJoined: user.dateJoined,
-          userKey: token
+          userKey: token,
+          shop: {}
         }
 
         return res.send({
@@ -112,6 +114,7 @@ module.exports = {
   },
   UpdateUser: async (req, res) => {
     const userId = res.locals.userId;
+    const userKey = res.locals.userKey;
     const request = req.body;
     const requestKeys = Object.keys(request);
     let shop;
@@ -153,6 +156,7 @@ module.exports = {
         id: user._id,
         isVendor: user.isVendor,
         dateJoined: user.dateJoined,
+        userKey: userKey,
         shop: shopDetails
       }
 
@@ -168,6 +172,7 @@ module.exports = {
   },
   FetchUser: async (req, res) => {
     const userId = res.locals.userId;
+    const userKey = res.locals.userKey;
     let shop;
 
     const user = await User.findOne({
@@ -195,6 +200,7 @@ module.exports = {
       id: user._id,
       isVendor: user.isVendor,
       dateJoined: user.dateJoined,
+      userKey: userKey,
       shop: shopDetails
     }
 

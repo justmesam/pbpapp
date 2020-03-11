@@ -13,7 +13,7 @@ module.exports = {
 
       const item = Item({
         name: name,
-        price: price,
+        price: parseInt(price, 10),
         shop: mongoose.Types.ObjectId(shop)
       })
 
@@ -59,7 +59,7 @@ module.exports = {
         items: allItems
       })
     }
-    numberOfItems = await Item.countDocuments({ shop: shop })
+    numberOfItems = await Item.countDocuments()
     const allItems = await Item.find()
 
     return res.send({

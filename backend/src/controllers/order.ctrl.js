@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const Order = require('../models/order.model');
+const Item = require('../models/item.model');
 
 
 module.exports = {
@@ -60,7 +61,30 @@ module.exports = {
         orders: limitedOrders
       })
     }
-    const allOrders = await Order.find({ customer: userId })
+    const orders = await Order.find({ customer: userId })
+
+    const allOrders = await Promise.all(
+      orders.map(async (order) => {
+
+          const allItems = await Promise.all(
+            order.items.map(async (id) => {
+                const item = await Item.findOne({ _id : id })
+
+                return item
+          }))
+
+          const responseObj = {
+            name: order.name,
+            total: order.total,
+            items: allItems,
+            shop: order.shop,
+            id: order._id,
+            customer: order.customer,
+            dateCtreated: order.dateCtreated
+          }
+
+          return responseObj
+    }))
 
     return res.send({
       count: numberOfOrders,
