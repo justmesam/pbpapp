@@ -8,7 +8,7 @@ import MainAppNavigator from './app.navigator'
 import AuthNavigator from './auth.navigator'
 
 const AppNavigator = () => {
-  const [ route, setRoute] = useState('auth')
+  const [ route, setRoute] = useState('')
   const { store, dispatch } = useContext(StoreContext)
 
   useEffect(() => {
@@ -27,15 +27,13 @@ const AppNavigator = () => {
     setRoute('auth')
   }
 
-  return (
-      <Fragment>
-        {
-          route === 'home'
-          ? <MainAppNavigator />
-          : <AuthNavigator />
-        }
-      </Fragment>
-  )
+  if (route === 'home'){
+    return <MainAppNavigator />
+  } else if (route === 'auth') {
+    return <AuthNavigator />
+  } else {
+    return <View/>
+  }
 }
 
 export default AppNavigator;

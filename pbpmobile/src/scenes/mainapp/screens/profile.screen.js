@@ -3,7 +3,7 @@ import moment from 'moment'
 import Modal from "react-native-modal";
 import { View, Text, Image } from 'react-native';
 
-import { TouchableText, Input, UpdateDetails, ShopForm } from '../../common'
+import { TouchableText, Input, allShopsAction,UpdateDetails, ShopForm } from '../../common'
 import { StoreContext} from '../../../data/context/store.context'
 import { updateUserAction, fetchUserAction } from '../../../data/api/actions'
 
@@ -43,6 +43,7 @@ const Profile = () => {
     updateUserAction(dispatch, details)
     toggleModal(!showModal)
     fetchUserAction(dispatch)
+    allShopsAction(dispatch)
   }
 
   const handleShopModal = () => {
