@@ -8,6 +8,8 @@ import { TouchableText, Input, ItemForm } from '../../common'
 import { StoreContext} from '../../../data/context/store.context'
 import { addToCart } from '../../../data/api/action.creators'
 
+import styles from '../styles'
+
 const {height, width} = Dimensions.get('window');
 
 const defaultItem = {
@@ -56,16 +58,16 @@ const Shop = ({navigation, route}) => {
       const shopItem = item.item
       return (
         <TouchableOpacity
+          style={styles.itemTile}
           onPress={() => handleAddTocart(shopItem)} >
-          <Text>{shopItem.name}</Text>
-          <Text>{shopItem.price}</Text>
-          <Text> Date Created: {moment(shopItem.dateCreated).format("DD/MM/YYYY")} </Text>
+          <Text style={styles.name}>{shopItem.name}</Text>
+          <Text style={styles.itemprice}>Ksh: {shopItem.price}</Text>
         </TouchableOpacity>
       )
     }
 
     return (
-      <View>
+      <View style={styles.Container}>
         <Modal isVisible={showModal}>
             <ItemForm
               showModal={showModal}
@@ -75,20 +77,21 @@ const Shop = ({navigation, route}) => {
               handleAddItem={handleAddItem} />
 
         </Modal>
-        <Text> Name: {shop.name} </Text>
+        <Text style={styles.headerStyles}> Shop </Text>
+        <View style={styles.shopDetials}>
+          <Text style={styles.name}> Shop Name: </Text>
+          <Text style={styles.nameValue}> {shop.name} </Text>
+        </View>
+
         <View>
-          <Text> Items: </Text>
           {
             shop.items.length > 0
             ? <FlatList
                 style={{
-                  height: height - 200,
-                  flexGrow: 0
-                }}
+                  ...styles.ListContainer,
+                  ...styles.itemsListContainer}}
                 data={shop.items}
-                keyExtractor={(item, index) => {
-                      return item._id;
-                    }}
+                keyExtractor={(item) => item._id}
                 renderItem={renderItems}
                 />
               : <Text> There are no items to be ordered from this shop</Text>
@@ -99,11 +102,17 @@ const Shop = ({navigation, route}) => {
           user.isVendor && (Object.keys(user.shop).length > 0
              ? user.shop.id === shop.id &&
               <TouchableText
-                text="Add Item"
+                text={`Add Item`}
+                styleType="button"
+                touchStyles={styles.addItemButton}
+                textStyles={styles.addItemButtonText}
                 handlePress={() => toggleModal(!showModal)} />
             : <TouchableText
-                text={`All Vendors Must have a shop!
-                  \nClick me or navigate to your profile to create one`}
+            touchStyles={styles.warningBanner}
+            textStyles={styles.warningBannerText}
+                text={
+                  `All Vendors Must have a shop!\nClick me or navigate to your profile to create one`
+                }
                 handlePress={() => navigation.navigate('Profile')}
               />)
         }
@@ -111,6 +120,8 @@ const Shop = ({navigation, route}) => {
         {
           cart.length > 0 &&
           <TouchableText
+            touchStyles={styles.cartBanner}
+            textStyles={styles.cartText}
              text={`${cart.length} Items added to Order`}
              handlePress={() => navigation.navigate('Cart')} />
         }

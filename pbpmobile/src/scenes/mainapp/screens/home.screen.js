@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, TextInput, FlatList } from 'react-native';
 import Modal from "react-native-modal";
 import moment from 'moment'
 
@@ -8,6 +8,9 @@ import { setNavigations, addToCart } from '../../../data/api/action.creators'
 import Header from './header.screen'
 import { StoreContext } from '../../../data/context/store.context'
 import { Input, TouchableText, ItemForm } from '../../common'
+import { capitalize } from './profile.screen'
+
+import styles from '../styles'
 
 const defaultItem = {
   name: '',
@@ -41,34 +44,42 @@ const Home = (props) => {
   }
 
   return (
-    <View>
+    <View style={styles.Container}>
       {
         allShops.count < 1
-        ? <Text> No Shops to order from available.</Text>
-        : allShops.shops.map((shop, i) => (
-          <TouchableOpacity
-            key={i}
-            onPress={() => navigation.navigate('Shop', { shop })}>
-            <Text>{shop.name}</Text>
-          </TouchableOpacity>
-        ))
+        ? <Text style={styles.fallBackText} > No Shops to order from available.</Text>
+        : <FlatList
+            style={styles.ListContainer}
+            data={allShops.shops}
+            keyExtractor={(item) => item.id}
+            renderItem={(item) => (
+              <TouchableText
+                touchStyles={styles.homeTiles}
+                textStyles={styles.homeTilesText}
+                text={capitalize(item.item.name)}
+                handlePress={() => navigation.navigate('Shop', { shop: item.item })}/>
+            )}/>
+      }
+      {
+        user.isVendor && Object.keys(user.shop).length < 1 &&
+           <TouchableText
+             touchStyles={styles.warningBanner}
+             textStyles={styles.warningBannerText}
+              text={
+                `All Vendors Must have a shop!\nClick me or navigate to your profile to create one`}
+              handlePress={() => navigation.navigate('Profile')}
+            />
       }
 
-        {
-          user.isVendor && Object.keys(user.shop).length < 1 &&
-             <TouchableText
-                text={
-                  `All Vendors Must have a shop!\nClick me or navigate to your profile to create one`}
-                handlePress={() => navigation.navigate('Profile')}
-              />
-        }
-
-        {
-          cart.length > 0 &&
-          <View>
-            <Text>{cart.length} Items added to Order</Text>
-          </View>
-        }
+      {
+        cart.length > 0 &&
+        <TouchableText
+           touchStyles={styles.cartBanner}
+           textStyles={styles.cartText}
+           text={`${cart.length} Items added to Order`}
+           handlePress={() => {}}
+         />
+      }
     </View>
   );
 }

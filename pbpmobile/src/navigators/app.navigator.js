@@ -10,6 +10,8 @@ import Shop from '../scenes/mainapp/screens/shop.screen'
 import ShopMap from '../scenes/mainapp/screens/shops.screen'
 import { Orders, Items} from '../scenes/mainapp/screens/listed.screen'
 
+import { Colors } from '../scenes/common'
+
 const MainAppNav = createStackNavigator()
 
 const MainAppNavigator = ({ navigation, route }) => {
@@ -18,9 +20,9 @@ const MainAppNavigator = ({ navigation, route }) => {
         initialRouteName="Home"
       >
         <MainAppNav.Screen
-          name="Pbp App"
+          name="Home"
           component={AppDrawer}
-          options={{ headerTitle: () => <Header/> }}
+          options={{ headerTitle: (props) => <Header {...props}/> }}
         />
         <MainAppNav.Screen name="Cart" component={Cart} />
         <MainAppNav.Screen name="Shop" component={Shop} />
@@ -34,6 +36,9 @@ export const AppDrawer = ({ navigation, route }) => {
   return (
     <Drawer.Navigator
       initialRouteName="Home"
+      drawerContentOptions={{
+        activeTintColor:Colors.Green
+      }}
       >
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="Profile" component={Profile} />

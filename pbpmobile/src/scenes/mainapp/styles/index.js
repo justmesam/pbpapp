@@ -1,14 +1,37 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-import { Colors } from '../../common'
+import { Colors as Constants } from '../../common'
 
-const window = Dimensions.get("screen");
+import homeStyles from './home.styles'
+import shopStyles from './shop.styles'
+import profileStyles from './profile.styles'
 
-export default StyleSheet.create({
+const headerStyles = StyleSheet.create({
   header: {
-    backgroundColor: Colors.White,
+    backgroundColor: Constants.White,
     flexDirection : 'row',
-    width: window.width,
-    justifyContent: 'space-around'
+    width: Constants.width,
   },
+  headerSection: {
+    width: Constants.width/3 - 10,
+    justifyContent: 'center'
+  },
+  headerImage: {
+    width: 40,
+    height: 40,
+  },
+  lastSection: {
+    alignItems: 'flex-end',
+  },
+  headerLabel: {
+    alignSelf: 'center',
+    fontSize: 20
+  }
 });
+
+export default {
+  ...headerStyles,
+  ...homeStyles,
+  ...shopStyles,
+  ...profileStyles
+}

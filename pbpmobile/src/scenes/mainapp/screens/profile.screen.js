@@ -1,13 +1,21 @@
 import React, { Fragment, useContext, useState, useEffect } from 'react';
 import moment from 'moment'
 import Modal from "react-native-modal";
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 
 import { TouchableText, Input, UpdateDetails, ShopForm } from '../../common'
 import { StoreContext} from '../../../data/context/store.context'
 import { updateUserAction, fetchUserAction } from '../../../data/api/actions'
 
+import UserImg from '../../../resources/user.png'
+import styles from '../styles'
+
 const defultShop = { name: '', latitude: '', longitude: ''}
+
+export const capitalize = (word) => {
+  if (typeof word !== 'string') return ''
+  return word.charAt(0).toUpperCase() + word.slice(1)
+}
 
 const Profile = () => {
   const { store, dispatch } = useContext(StoreContext)
@@ -49,7 +57,7 @@ const Profile = () => {
 
 
   return (
-      <View>
+      <View style={styles.Container}>
         <Modal isVisible={showModal}>
           {shopCreate.modal
             ? <ShopForm
@@ -66,13 +74,23 @@ const Profile = () => {
                 handleUpdate={handleUpdate} />}
 
         </Modal>
-        <Text> Name: {user.username} </Text>
-        <Text> Email: {user.email} </Text>
-        <Text> Date Joined: {moment(user.dateJoined).format("DD/MM/YYYY")} </Text>
-
-        {
-
-        }
+        <View style={styles.userDetails}>
+          <View style={styles.imageSection}>
+            <Image source={UserImg} style={styles.userImage}/>
+          </View>
+          <View style={styles.detailsSection}>
+              <Text style={{
+                ...styles.userDetail,
+                ...styles.userName}}>
+                {capitalize(user.username)}
+              </Text>
+              <View style={styles.divider}></View>
+            <Text style={styles.userDetail}>{user.email} </Text>
+            <Text style={styles.userDetail}>
+              Date Joined: {moment(user.dateJoined).format("DD/MM/YYYY")}
+            </Text>
+          </View>
+        </View>
         {
           !user.isVendor &&
           <TouchableText
@@ -82,7 +100,7 @@ const Profile = () => {
 
         {
           user.isVendor &&
-          (Object.keys(user.shop).length < 1 
+          (Object.keys(user.shop).length < 1
             ? <TouchableText
                 text="Create a shop"
                 handlePress={() => handleShopModal()} />

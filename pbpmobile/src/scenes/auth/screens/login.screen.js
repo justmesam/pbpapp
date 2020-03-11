@@ -23,25 +23,34 @@ const Login = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text> Log in</Text>
-      <Text> Please log in to your account;</Text>
-      <Input
-        placeholder="Email"
-        value={userDetails.email}
-        handleOnchange={(text) => handleDetails('email', text)}
-        keyboardType={'email-address'}
-        />
-      <Input
-        placeholder="Password"
-        value={userDetails.password}
-        secureTextEntry={true}
-        handleOnchange={(text) => handleDetails('password', text)}
-        />
+      <View style={styles.introText}>
+        <Text style={styles.headerStyles}>Log in</Text>
+        <View style={styles.divider}></View>
+        <Text style={styles.captionStyles}>Please log in to your account;</Text>
+      </View>
+      <View style={styles.inputContainer}>
+        <Input
+          placeholder="Email"
+          value={userDetails.email}
+          handleOnchange={(text) => handleDetails('email', text)}
+          keyboardType={'email-address'}
+          />
+        <Input
+          placeholder="Password"
+          value={userDetails.password}
+          secureTextEntry={true}
+          handleOnchange={(text) => handleDetails('password', text)}
+          />
+        <TouchableText
+          text="Login"
+          handlePress={() => handleLogin()}
+          styleType="button"
+          touchStyles={styles.buttonShadow}
+          />
+      </View>
       <TouchableText
-        text="Login"
-        handlePress={() => handleLogin()}
-        />
-      <TouchableText
+        touchStyles={styles.redirect}
+        textStyles={styles.redirectText}
         text="Don't have an account? Sign Up"
         handlePress={() => navigation.navigate('SignUp')}
         />

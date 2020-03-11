@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
  },
  map: {
    ...StyleSheet.absoluteFillObject,
-   height: height - 100,
+   height: height,
  },
 });
 
@@ -51,10 +51,6 @@ const styles = StyleSheet.create({
            }}
          >
          {shops.shops.map((shop, i) => {
-           {console.log("::::::::::", {
-            latitude: parseFloat(shop.latitude),
-            longitude: parseFloat(shop.longitude)
-          })}
            return(
            <MapView.Marker
              key={i}
