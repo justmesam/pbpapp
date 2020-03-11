@@ -9,7 +9,9 @@ import {
   getShops,
   updateUser,
   fetchUser,
-  createItem } from './action.api'
+  createItem,
+  allShops,
+  createOrder} from './action.api'
 
 
 const login = async (dispatch, {email, password}) => {
@@ -41,6 +43,19 @@ const  fetchShops = async (dispatch, limit) => {
     return(dispatch(creators.fetchShopsSuccess(data)))
   } catch(error) {
     return(dispatch(creators.fetchShopsFailure(error.response.data)))
+  }
+}
+
+const  allShopsAction = async (dispatch, limit) => {
+  try {
+    dispatch(creators.makeApiCall())
+    const response = await allShops(limit)
+
+    const { data } = response
+
+    return(dispatch(creators.allShopsSuccess(data)))
+  } catch(error) {
+    return(dispatch(creators.allShopsFailure(error.response.data)))
   }
 }
 
@@ -154,4 +169,18 @@ const createItemAction = async (dispatch, item) => {
   }
 }
 
-export { login, signup, fetchItems, fetchUserAction, fetchShops, fetchOrders, createItemAction, updateUserAction, logout}
+const createOrderAction = async (dispatch, order) => {
+  try {
+    dispatch(creators.makeApiCall())
+
+    const response = await createOrder(order)
+
+    const { data } = response
+    return(dispatch(creators.createOrderSuccess(data)))
+
+  } catch(error) {
+    return(dispatch(creators.createOrderFailure(error)))
+  }
+}
+
+export { login, signup, allShopsAction, createOrderAction, fetchItems, fetchUserAction, fetchShops, fetchOrders, createItemAction, updateUserAction, logout}

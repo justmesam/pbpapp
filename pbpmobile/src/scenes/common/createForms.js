@@ -29,7 +29,7 @@ const ShopForm = ({ shopDetails, handleDetails, toggleModal, handleShopCreate}) 
               text="Cancel"
               handlePress={() => toggleModal()} />
             <TouchableText
-              text="Update"
+              text="Create Shop"
               handlePress={() => handleShopCreate({ shop : shopDetails})} />
           </View >
         </View>
@@ -56,7 +56,7 @@ const ItemForm = ({ itemDetails, handleDetails, toggleModal, handleAddItem, show
               text="Cancel"
               handlePress={() => toggleModal(!showModal)} />
             <TouchableText
-              text="Update"
+              text="Add Item"
               handlePress={() => handleAddItem()} />
           </View >
         </View>

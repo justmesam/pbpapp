@@ -13,8 +13,14 @@ export const reducer = (state, action) => {
       return {...state, user: action.user.user, isAuthenicated: true}
     case types.SET_USER:
       return {...state, user: action.user, isAuthenicated: true}
+    case types.ADD_TO_CART:
+      return {...state, cart: [...state.cart, action.item]}
     case types.SET_NAVIGATIONS:
       return {...state, navigation: action.navigation}
+    case types.FETCH_ALL_SHOPS_SUCCESS:
+      return {...state, allShops: action.allShops}
+    case types.FETCH_ALL_SHOPS_FAILURE:
+      return {...state, errors: action.error}
     case types.LOGIN_FAILURE:
       return {...state, errors: action.error}
     case types.SIGNUP_FAILURE:
@@ -44,13 +50,12 @@ export const reducer = (state, action) => {
     case types.FETCH_CURRENT_USER_FAILURE:
       return {...state, errors: action.error}
     case types.CREATE_ITEM_SUCCESS:
-      return {...state,
-        items: {
-          ...state.items,
-          count: state.items.count + 1,
-          items : [...state.items.items, action.item.item]
-        }}
+      return {...state }
     case types.CREATE_ITEM_FAILURE:
+      return {...state, errors: action.error}
+    case types.CREATE_ORDERS_SUCCESS:
+      return {...state, cart: []}
+    case types.CREATE_ORDERS_FAILURE:
       return {...state, errors: action.error}
     default:
       return state

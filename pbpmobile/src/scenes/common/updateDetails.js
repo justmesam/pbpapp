@@ -2,7 +2,8 @@ import React from 'react';
 import { CheckBox } from 'react-native-elements'
 import { View } from 'react-native';
 
-import { TouchableText, Input } from './index'
+import Input from './input'
+import TouchableText from './touchableText'
 
 const UpdateDetails = ({ userDetails, handleDetails, toggleModal, handleUpdate, showModal}) => {
   return (

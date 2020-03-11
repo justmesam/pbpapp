@@ -7,11 +7,13 @@ export const StoreContext = createContext();
 export const initialState = {
   user: {},
   shops: { count: 0, shops: [] },
+  allShops: { count: 0, shops: [] },
   items: { count: 0, items: [] },
   orders: { count: 0, orders: []},
   errors: {},
   navigation: {},
-  isAuthenicated: false
+  isAuthenicated: false,
+  cart: []
 }
 
 const StoreProvider = ({ children }) => {

@@ -5,6 +5,8 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import Home from '../scenes/mainapp/screens/home.screen'
 import Profile from '../scenes/mainapp/screens/profile.screen'
 import Header from '../scenes/mainapp/screens/header.screen'
+import Cart from '../scenes/mainapp/screens/cart.screen'
+import Shop from '../scenes/mainapp/screens/shop.screen'
 import { Orders, Items} from '../scenes/mainapp/screens/listed.screen'
 
 const MainAppNav = createStackNavigator()
@@ -19,6 +21,8 @@ const MainAppNavigator = ({ navigation, route }) => {
           component={AppDrawer}
           options={{ headerTitle: () => <Header/> }}
         />
+        <MainAppNav.Screen name="Cart" component={Cart} />
+        <MainAppNav.Screen name="Shop" component={Shop} />
       </MainAppNav.Navigator>
   )
 }

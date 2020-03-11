@@ -14,6 +14,11 @@ export const setNavigations = (navigation) => ({
   navigation
 })
 
+export const addToCart = (item) => ({
+  type: types.ADD_TO_CART,
+  item
+})
+
 export const loginUserSuccess = (user) => ({
   type: types.LOGIN_SUCCESS,
   user
@@ -100,5 +105,25 @@ export const createItemSuccess = (item) => ({
 
 export const createItemFailure = (error) => ({
   type: types.CREATE_ITEM_FAILURE,
+  error
+})
+
+export const allShopsSuccess = (allShops) => ({
+  type: types.FETCH_ALL_SHOPS_SUCCESS,
+  allShops
+})
+
+export const allShopsFailure = (error) => ({
+  type: types.FETCH_ALL_SHOPS_FAILURE,
+  error
+})
+
+export const createOrderSuccess = (orders) => ({
+  type: types.CREATE_ORDERS_SUCCESS,
+  orders
+})
+
+export const createOrderFailure = (error) => ({
+  type: types.CREATE_ORDERS_FAILURE,
   error
 })
