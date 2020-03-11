@@ -13,7 +13,8 @@ export const initialState = {
   errors: {},
   navigation: {},
   isAuthenicated: false,
-  cart: []
+  cart: [],
+  loading: false
 }
 
 const StoreProvider = ({ children }) => {

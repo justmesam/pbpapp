@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Text, View, TextInput } from 'react-native';
+import { Text, View, TextInput, ActivityIndicator } from 'react-native';
 
 import { login } from '../../../data/api/actions'
 import { StoreContext } from '../../../data/context/store.context'
@@ -11,7 +11,7 @@ const defaultValues = { email: '', password: ''}
 
 const Login = ({ navigation }) => {
   const [userDetails, setUserDetails] = useState(defaultValues)
-  const { dispatch } = useContext(StoreContext)
+  const { store, dispatch } = useContext(StoreContext)
 
   const handleDetails = (key, text) => {
     setUserDetails({...userDetails, [key]: text})
@@ -28,6 +28,14 @@ const Login = ({ navigation }) => {
         <View style={styles.divider}></View>
         <Text style={styles.captionStyles}>Please log in to your account;</Text>
       </View>
+      {
+        store.loading &&
+        <View>
+          <ActivityIndicator /><Text
+            style={styles.captionStyles}>hold on sec we log you in...
+          </Text>
+        </View>
+      }
       <View style={styles.inputContainer}>
         <Input
           placeholder="Email"

@@ -94,7 +94,9 @@ const Shop = ({navigation, route}) => {
                 keyExtractor={(item) => item._id}
                 renderItem={renderItems}
                 />
-              : <Text> There are no items to be ordered from this shop</Text>
+              : <Text style={styles.fallBackText}>
+                  There are no items to be ordered from this shop
+                </Text>
           }
         </View>
 
@@ -108,8 +110,8 @@ const Shop = ({navigation, route}) => {
                 textStyles={styles.addItemButtonText}
                 handlePress={() => toggleModal(!showModal)} />
             : <TouchableText
-            touchStyles={styles.warningBanner}
-            textStyles={styles.warningBannerText}
+                touchStyles={styles.warningBanner}
+                textStyles={styles.warningBannerText}
                 text={
                   `All Vendors Must have a shop!\nClick me or navigate to your profile to create one`
                 }
@@ -118,12 +120,12 @@ const Shop = ({navigation, route}) => {
         }
 
         {
-          cart.length > 0 &&
+          cart.length > 0 && cart[0].shop === shop.id &&
           <TouchableText
             touchStyles={styles.cartBanner}
             textStyles={styles.cartText}
-             text={`${cart.length} Items added to Order`}
-             handlePress={() => navigation.navigate('Cart')} />
+            text={`${cart.length} Items added to Order`}
+            handlePress={() => navigation.navigate('Cart')} />
         }
       </View>
   )

@@ -26,7 +26,53 @@ export default StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: Constants.White
+  },
+  containerStyle: {
+    width: '90%',
+    borderWidth: 0,
+    backgroundColor: Constants.White,
+    marginLeft: 0
+  },
+  textStyle: {
+    fontWeight: 'normal',
+    fontSize: 17,
+  },
+  modalContentStyles: {
+    width: '100%',
+    backgroundColor: Constants.LightGray,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 4
+  },
+  modalButton: {
+    backgroundColor: Constants.Green,
+  },
+  modalButtonDefault: {
+    width: 100,
+    height: 40,
 
   },
+  buttonSection: {
+    width: '90%',
+    marginTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  },
+  modalInput: {
+    width: '90%',
+    height: 40,
+    marginTop: 15,
 
+  },
+  modalHeader: {
+    marginTop: 10,
+    marginBottom: 10,
+    fontSize: 20,
+    alignSelf: 'flex-start',
+    fontWeight: 'bold',
+    paddingLeft: 15
+  },
+  modalText: {
+    fontSize: 15,
+  }
 });

@@ -5,6 +5,7 @@ import { Colors as Constants } from '../../common'
 import homeStyles from './home.styles'
 import shopStyles from './shop.styles'
 import profileStyles from './profile.styles'
+import listedStyles from './listed.styles'
 
 const headerStyles = StyleSheet.create({
   header: {
@@ -33,5 +34,6 @@ export default {
   ...headerStyles,
   ...homeStyles,
   ...shopStyles,
-  ...profileStyles
+  ...profileStyles,
+  ...listedStyles,
 }

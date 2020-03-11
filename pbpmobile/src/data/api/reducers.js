@@ -7,7 +7,8 @@ export const reducer = (state, action) => {
       return {...state,
         user: action.user.user,
         isAuthenicated: true,
-        message: action.user.message
+        message: action.user.message,
+        loading: false
       }
     case types.SIGNUP_SUCCESS:
       return {...state, user: action.user.user, isAuthenicated: true}
@@ -15,6 +16,8 @@ export const reducer = (state, action) => {
       return {...state, user: action.user, isAuthenicated: true}
     case types.ADD_TO_CART:
       return {...state, cart: [...state.cart, action.item]}
+    case types.INITIATE_API_CALL:
+      return {...state, loading: true }
     case types.SET_NAVIGATIONS:
       return {...state, navigation: action.navigation}
     case types.FETCH_ALL_SHOPS_SUCCESS:
@@ -22,7 +25,7 @@ export const reducer = (state, action) => {
     case types.FETCH_ALL_SHOPS_FAILURE:
       return {...state, errors: action.error}
     case types.LOGIN_FAILURE:
-      return {...state, errors: action.error}
+      return {...state, errors: action.error, loading: false}
     case types.SIGNUP_FAILURE:
       return {...state, errors: action.error}
     case types.FETCH_ITEMS_SUCCESS:

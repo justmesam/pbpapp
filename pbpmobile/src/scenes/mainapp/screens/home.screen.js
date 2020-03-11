@@ -74,7 +74,9 @@ const Home = (props) => {
       {
         cart.length > 0 &&
         <TouchableText
-           touchStyles={styles.cartBanner}
+           touchStyles={{
+             ...styles.cartBanner,
+             ...styles.homeCart}}
            textStyles={styles.cartText}
            text={`${cart.length} Items added to Order`}
            handlePress={() => {}}

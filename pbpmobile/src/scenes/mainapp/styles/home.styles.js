@@ -53,5 +53,9 @@ export default StyleSheet.create({
     alignSelf: 'center',
     color: Constants.White,
     fontSize: 17,
+  },
+  homeCart: {
+    backgroundColor: Constants.LightGreen,
+    elevation: 0
   }
 });

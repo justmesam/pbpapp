@@ -58,7 +58,12 @@ const Profile = () => {
 
   return (
       <View style={styles.Container}>
-        <Modal isVisible={showModal}>
+        <Modal
+          animationIn='slideInUp'
+          animationOut='slideOutDown'
+          animationInTiming={500}
+          animationOutTiming={500}
+          isVisible={showModal}>
           {shopCreate.modal
             ? <ShopForm
                 showModal={showModal}
@@ -95,6 +100,8 @@ const Profile = () => {
           !user.isVendor &&
           <TouchableText
             text="Become a Vendor"
+            touchStyles={styles.createShopButton}
+            styleType="button"
             handlePress={() => toggleModal(!showModal)} />
         }
 
@@ -103,16 +110,23 @@ const Profile = () => {
           (Object.keys(user.shop).length < 1
             ? <TouchableText
                 text="Create a shop"
+                styleType="button"
+                touchStyles={styles.createShopButton}
                 handlePress={() => handleShopModal()} />
-            : <View>
-                <Text> Shop</Text>
-                <Text> name: {user.shop.name} </Text>
-                <Text> Date Created: {moment(user.shop.dateCreated).format("DD/MM/YYYY")} </Text>
+              : <View style={styles.userShop}>
+                <Text style={styles.name}>My Shop</Text>
+                  <View style={styles.shopDetials}>
+                    <Text style={styles.nameValue}> Shop Name: </Text>
+                    <Text style={styles.nameValue}> {capitalize(user.shop.name)} </Text>
+                  </View>
+                <Text style={styles.nameValue}> Date Created: {moment(user.shop.dateCreated).format("DD/MM/YYYY")} </Text>
               </View>)
         }
 
         <TouchableText
           text="Edit Details"
+          styleType="button"
+          touchStyles={styles.editButton}
           handlePress={() => toggleModal(!showModal)} />
       </View>
   )

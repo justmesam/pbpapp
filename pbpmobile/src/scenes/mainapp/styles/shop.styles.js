@@ -39,7 +39,7 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
-    borderRightWidth: 1,
+    borderRightWidth: 2,
     borderColor: Constants.Gray
   },
   itemprice: {

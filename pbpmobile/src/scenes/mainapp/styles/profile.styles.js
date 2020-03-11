@@ -7,6 +7,7 @@ import { tile } from './home.styles'
 export default StyleSheet.create({
   userDetails: {
     flexDirection: 'row',
+    marginTop: 20,
     width: '99%'
   },
   imageSection: {
@@ -46,4 +47,22 @@ export default StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
   },
+  editButton: {
+    position: 'absolute',
+    bottom: 5,
+    right: 20,
+    backgroundColor: Constants.LightGreen,
+    elevation: 5
+  },
+  createShopButton: {
+    position: 'absolute',
+    bottom: 5,
+    left: 20,
+    backgroundColor: Constants.LightRed,
+    elevation: 5
+  },
+  userShop: {
+    marginTop: 20,
+    marginLeft: 20,
+  }
 });

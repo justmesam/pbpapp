@@ -35,7 +35,9 @@ const styles = StyleSheet.create({
    return (
      <View style={styles.container}>
        {shops.count < 1
-       ? <Text> You have not ordered from any shop yet</Text>
+       ? <Text style={styles.fallBackText}>
+           You have not ordered from any shop yet!
+         </Text>
         : <MapView
            provider={PROVIDER_GOOGLE}
            style={styles.map}

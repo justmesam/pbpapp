@@ -11,6 +11,8 @@ import { Input, TouchableText, ItemForm } from '../../common'
 
 const {height, width} = Dimensions.get('window');
 
+import styles from '../styles'
+
 const defaultOrder = {
   name: '',
   total: '',
@@ -54,35 +56,38 @@ const Home = (props) => {
   }
 
   return (
-    <View>
+    <View style={styles.Container}>
       <Input
         placeholder="Order"
         value={orderDetails.name}
         handleOnchange={(text) => handleDetails('name', text)}
         />
-      <Text> Total Price : {orderDetails.total}</Text>
-      <Text> Order Items: </Text>
+      <View style={styles.shopDetials}>
+          <Text style={styles.name}> Total Price : </Text>
+          <Text style={{
+              ...styles.nameValue,
+              ...styles.cartTotal
+            }}> {orderDetails.total} </Text>
+        </View>
       <FlatList
           style={{
-            height: (height/2 )- 20,
-            flexGrow: 0
-          }}
+            ...styles.ListContainer,
+            ...styles.itemsListContainer}}
           data={cart}
-          keyExtractor={(item, index) => {
-                return item._id;
-              }}
-          renderItem={( item ) => {
-              const shopItem = item.item
-              return (
+          keyExtractor={(item ) => item._id}
+          renderItem={( item ) => (
                 <TouchableOpacity
-                  onPress={() => dispatch(addToCart(shopItem))}>
-                  <Text>{shopItem.name}</Text>
-                  <Text>{shopItem.price}</Text>
+                  style={styles.itemTile}
+                  onPress={() => dispatch(addToCart(item.item))}>
+                  <Text style={styles.name}>{item.item.name}</Text>
+                  <Text style={styles.itemprice}>Ksh: {item.item.price}</Text>
                 </TouchableOpacity>
               )
-            }}
+            }
           />
       <TouchableText
+        touchStyles={styles.cartBanner}
+        textStyles={styles.cartText}
          text={`Complete Order`}
          handlePress={() => handleOrder()} />
     </View>

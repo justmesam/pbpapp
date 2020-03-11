@@ -53,7 +53,6 @@ const SignUp = ({ navigation }) => {
           textStyle={styles.textStyle}
           containerStyle={styles.containerStyle}
           checked={userDetails.isVendor}
-          // checkedIcon='dot-circle-o'
           onPress={() => handleDetails('isVendor', !userDetails.isVendor)}
           />
         <TouchableText

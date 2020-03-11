@@ -7,5 +7,6 @@ export const White = '#ffffff'
 export const Green = '#13aa52'
 export const LightGreen = '#13aa5285'
 export const LightGray = '#f5f5f5'
+export const LightRed = '#f84046d1'
 
 export const {height, width} = Dimensions.get('window');
