@@ -7,6 +7,7 @@ import Profile from '../scenes/mainapp/screens/profile.screen'
 import Header from '../scenes/mainapp/screens/header.screen'
 import Cart from '../scenes/mainapp/screens/cart.screen'
 import Shop from '../scenes/mainapp/screens/shop.screen'
+import ShopMap from '../scenes/mainapp/screens/shops.screen'
 import { Orders, Items} from '../scenes/mainapp/screens/listed.screen'
 
 const MainAppNav = createStackNavigator()
@@ -38,6 +39,7 @@ export const AppDrawer = ({ navigation, route }) => {
       <Drawer.Screen name="Profile" component={Profile} />
       <Drawer.Screen name="Orders Made" component={Orders} />
       <Drawer.Screen name="Items Ordered" component={Items} />
+      <Drawer.Screen name="Shops Ordered From" component={ShopMap} />
     </Drawer.Navigator>
   );
 }
