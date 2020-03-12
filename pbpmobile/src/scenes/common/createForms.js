@@ -51,7 +51,7 @@ const ShopForm = ({ shopDetails, handleDetails, toggleModal, handleShopCreate}) 
 
 const ItemForm = ({ itemDetails, handleDetails, toggleModal, handleAddItem, showModal}) => {
   return (
-        <View styles={styles.modalContentStyles}>
+        <View style={styles.modalContentStyles}>
           <Text style={styles.modalHeader} >Create an Item;</Text>
           <Input
             inputStyles={styles.modalInput}
