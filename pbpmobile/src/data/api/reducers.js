@@ -14,6 +14,8 @@ export const reducer = (state, action) => {
       return {...state, user: action.user.user, isAuthenicated: true}
     case types.SET_USER:
       return {...state, user: action.user, isAuthenicated: true}
+    case types.SET_USER:
+      return {...state, coordinates: action.coordinates}
     case types.ADD_TO_CART:
       return {...state, cart: [...state.cart, action.item]}
     case types.INITIATE_API_CALL:

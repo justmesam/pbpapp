@@ -1,9 +1,10 @@
 import React, { Fragment, useContext, useState, useEffect } from 'react';
-import { View } from 'react-native';
+import { View, PermissionsAndroid } from 'react-native';
+import Geolocation from '@react-native-community/geolocation';
 
 import { StoreContext} from '../data/context/store.context'
 import { retrieveToken } from '../data/api/action.token'
-import { setUser } from '../data/api/action.creators'
+import { setUser, setLocation } from '../data/api/action.creators'
 import MainAppNavigator from './app.navigator'
 import AuthNavigator from './auth.navigator'
 
@@ -13,6 +14,7 @@ const AppNavigator = () => {
 
   useEffect(() => {
     handleIsAuthenticated()
+    requestCameraPermission()
   }, [store.isAuthenicated])
 
   const handleIsAuthenticated = async () => {
@@ -26,6 +28,22 @@ const AppNavigator = () => {
     }
     setRoute('auth')
   }
+
+  async function requestCameraPermission() {
+  try {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
+    );
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      Geolocation.getCurrentPosition(
+        info => dispatch(setLocation(info.coords)));
+    } else {
+      console.log('Camera permission denied');
+    }
+  } catch (err) {
+    console.warn(err);
+  }
+}
 
   if (route === 'home'){
     return <MainAppNavigator />
