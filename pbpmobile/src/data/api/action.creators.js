@@ -14,6 +14,11 @@ export const setNavigations = (navigation) => ({
   navigation
 })
 
+export const setLocation = (coordinates) => ({
+  type: types.USER_CURRENT_LOCATION,
+  coordinates
+})
+
 export const addToCart = (item) => ({
   type: types.ADD_TO_CART,
   item

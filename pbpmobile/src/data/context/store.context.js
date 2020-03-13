@@ -12,6 +12,7 @@ export const initialState = {
   orders: { count: 0, orders: []},
   errors: {},
   navigation: {},
+  coordinates: {},
   isAuthenicated: false,
   cart: [],
   loading: false
