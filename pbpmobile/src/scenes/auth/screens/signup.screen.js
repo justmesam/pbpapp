@@ -33,7 +33,7 @@ const SignUp = ({ navigation }) => {
         store.loading &&
         <View>
           <ActivityIndicator /><Text
-            style={styles.captionStyles}>hold on sec we log you in...
+            style={styles.captionStyles}>hold on sec we sign you up...
           </Text>
         </View>
       }
