@@ -12,7 +12,7 @@ const defaultValues = { username: '', email: '', password: '', isVendor: false}
 
 const SignUp = ({ navigation }) => {
   const [userDetails, setUserDetails] = useState(defaultValues)
-  const { dispatch } = useContext(StoreContext)
+  const { store, dispatch } = useContext(StoreContext)
 
   const handleDetails = (key, text) => {
     setUserDetails({...userDetails, [key]: text})
@@ -29,6 +29,14 @@ const SignUp = ({ navigation }) => {
         <View style={styles.divider}/>
         <Text style={styles.captionStyles}> Please sign up to use pbpapp;</Text>
       </View>
+      {
+        store.loading &&
+        <View>
+          <ActivityIndicator /><Text
+            style={styles.captionStyles}>hold on sec we sign you up...
+          </Text>
+        </View>
+      }
       <View style={styles.inputContainer}>
         <Input
           placeholder="Username"
