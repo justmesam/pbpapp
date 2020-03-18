@@ -3,9 +3,9 @@ import moment from 'moment'
 import Modal from "react-native-modal";
 import { View, Text, Image } from 'react-native';
 
-import { TouchableText, Input, allShopsAction,UpdateDetails, ShopForm } from '../../common'
+import { TouchableText, Input, UpdateDetails, ShopForm } from '../../common'
 import { StoreContext} from '../../../data/context/store.context'
-import { updateUserAction, fetchUserAction } from '../../../data/api/actions'
+import { updateUserAction, fetchUserAction, allShopsAction } from '../../../data/api/actions'
 
 import UserImg from '../../../resources/user.png'
 import styles from '../styles'
